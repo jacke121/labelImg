@@ -157,11 +157,8 @@ class PascalVocReader:
         parser = etree.XMLParser(encoding=ENCODE_METHOD)
         xmltree = ElementTree.parse(self.filepath, parser=parser).getroot()
         filename = xmltree.find('filename').text
-
-
         self.pic_width =  xmltree.find('size').find('width').text
         self.pic_height =  xmltree.find('size').find('height').text
-        print(filename +" w:"+self.pic_width+" h:"+self.pic_height)
         try:
             verified = xmltree.attrib['verified']
             if verified == 'yes':

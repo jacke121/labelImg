@@ -61,9 +61,11 @@ class Canvas(QWidget):
         self.setMouseTracking(True)
         self.setFocusPolicy(Qt.WheelFocus)
         self.verified = False
-        self.pic_width='0'
-        self.pic_height = '0'
+        self.xml_width= '0'
+        self.xml_height = '0'
         self.has_label = False
+        self.pic_width = '0'
+        self.pic_height = '0'
 
     def setDrawingColor(self, qColor):
         self.drawingLineColor = qColor
@@ -407,8 +409,8 @@ class Canvas(QWidget):
 
         p.drawPixmap(0, 0, self.pixmap)
 
-        if not self.pic_width =='0':
-           p.drawText(10,-10,"w:"+self.pic_width+" h:"+self.pic_height)
+        if not self.xml_width == '0':
+           p.drawText(10, -10," pic_size:" + self.pic_width + "/" + self.pic_height+" xml_w:" + self.xml_width + "/" + self.xml_height )
         Shape.scale = self.scale
         for shape in self.shapes:
             if (shape.selected or not self._hideBackround) and self.isVisible(shape):

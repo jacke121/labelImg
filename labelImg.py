@@ -1029,7 +1029,10 @@ class MainWindow(QMainWindow, WindowMixin):
             self.status("Loaded %s" % os.path.basename(filePath))
             self.image = image
             self.filePath = filePath
-            self.canvas.loadPixmap(QPixmap.fromImage(image))
+            q_image=QPixmap.fromImage(image)
+            self.canvas.pic_width=str(q_image.width())
+            self.canvas.pic_height = str(q_image.height())
+            self.canvas.loadPixmap(q_image)
             if self.labelFile:
                 self.loadLabels(self.labelFile.shapes)
             self.setClean()
@@ -1445,8 +1448,8 @@ class MainWindow(QMainWindow, WindowMixin):
         shapes = tVocParseReader.getShapes()
         self.loadLabels(shapes)
         self.canvas.verified = tVocParseReader.verified
-        self.canvas.pic_width= tVocParseReader.pic_width
-        self.canvas.pic_height = tVocParseReader.pic_height
+        self.canvas.xml_width= tVocParseReader.pic_width
+        self.canvas.xml_height = tVocParseReader.pic_height
 
         if self.labelFile is None:
             self.labelFile = LabelFile()
